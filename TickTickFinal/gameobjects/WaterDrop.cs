@@ -1,19 +1,22 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-class WaterDrop : SpriteGameObject
+abstract class WaterDrop : SpriteGameObject
 {
     protected float bounce;
+    protected int counter;
+    protected int velocity = 2;
 
     public WaterDrop(int layer=0, string id="") : base("Sprites/spr_water", layer, id) 
     {
     }
 
+    public abstract void MoveDrop();
+
     public override void Update(GameTime gameTime)
     {
-        double t = gameTime.TotalGameTime.TotalSeconds * 3.0f + Position.X;
-        bounce = (float)Math.Sin(t) * 0.2f;
-        position.Y += bounce;
+        counter++;
+        MoveDrop();
         Player player = GameWorld.Find("player") as Player;
         if (visible && CollidesWith(player))
         {
