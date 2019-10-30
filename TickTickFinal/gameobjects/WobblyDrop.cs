@@ -9,12 +9,6 @@ class WobblyDrop : WaterDrop
 {
     public override void MoveDrop()
     {
-        counter++;
-        position.X -= velocity;
-        if (counter == 10)
-        {
-            velocity *= -1;
-            counter = 0;
-        }
+     
     }
 }
