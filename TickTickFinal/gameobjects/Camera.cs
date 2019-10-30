@@ -7,12 +7,12 @@ public class Camera : GameObject
 {
     public Camera()
     {
-        position = new Vector2(0,0);
+        id = "camera";
     }
-    public void Update()
+    public override void Update(GameTime gameTime)
     {
         Player player = GameWorld.Find("player") as Player;
-        position = player.Position;
+        position = player.Position + new Vector2(-500,-600);
     }
 }
 
