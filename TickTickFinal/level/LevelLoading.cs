@@ -99,8 +99,7 @@ partial class Level : GameObjectList
         Vector2 startPosition = new Vector2(((float)x + 0.5f) * tiles.CellWidth, (y + 1) * tiles.CellHeight);
         Player player = new Player(startPosition);
         Add(player);
-        Camera camera = new Camera();
-        Add(camera);
+        Add(new Camera());
         return new Tile("", TileType.Background);
     }
 
