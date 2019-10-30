@@ -8,7 +8,7 @@ public class GameEnvironment : Game
     protected GraphicsDeviceManager graphics;
     protected SpriteBatch spriteBatch;
     protected InputHelper inputHelper;
-
+    protected Matrix spriteScale;
     protected Point windowSize;
     protected Camera camera;
 
@@ -24,7 +24,7 @@ public class GameEnvironment : Game
         camera = new Camera();
         inputHelper = new InputHelper();
         gameStateManager = new GameStateManager();
-        
+        spriteScale = Matrix.CreateScale(1, 1, 1);
         random = new Random();
         assetManager = new AssetManager(Content);
         gameSettingsManager = new GameSettingsManager();
