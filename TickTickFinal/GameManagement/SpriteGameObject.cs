@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 public class SpriteGameObject : GameObject
 {
@@ -26,16 +27,14 @@ public class SpriteGameObject : GameObject
         {
             return;
         }
-        try
-        {
-            Camera camera = GameWorld.Find("camera") as Camera;
-            sprite.Draw(spriteBatch, this.GlobalPosition + camera.Position, origin);
-        }
-        catch
-        {
+        Camera camera = GameWorld.Find("camera") as Camera;
+        if (camera == null)
             sprite.Draw(spriteBatch, this.GlobalPosition, origin);
+        else
+        {
+            sprite.Draw(spriteBatch, this.GlobalPosition + camera.Position, origin);
+            Console.WriteLine("fuck u");
         }
-
     }
 
     public SpriteSheet Sprite
