@@ -164,7 +164,11 @@ partial class Level : GameObjectList
     {
         GameObjectList waterdrops = Find("waterdrops") as GameObjectList;
         TileField tiles = Find("tiles") as TileField;
-        WaterDrop w = new RisingDrop();
+        WaterDrop w;
+        if (GameEnvironment.Random.Next(2) == 0)
+            w = new RisingDrop();
+        else
+            w = new WobblyDrop();
         w.Origin = w.Center;
         w.Position = new Vector2(x * tiles.CellWidth, y * tiles.CellHeight - 10);
         w.Position += new Vector2(tiles.CellWidth, tiles.CellHeight) / 2;
