@@ -1,18 +1,18 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 
 public class Camera : GameObject
 {
-    Point screen;
-    public Matrix transform{ get; private set;}
     public Camera()
     {
-        screen = GameEnvironment.Screen;
+        position = new Vector2(0,0);
     }
     public void Update()
     {
-
+        Player player = GameWorld.Find("player") as Player;
+        position = player.Position;
     }
 }
 

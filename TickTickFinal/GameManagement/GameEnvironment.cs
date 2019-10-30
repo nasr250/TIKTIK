@@ -10,8 +10,6 @@ public class GameEnvironment : Game
     protected InputHelper inputHelper;
     protected Matrix spriteScale;
     protected Point windowSize;
-    protected Camera camera;
-
     protected static Point screen;
     protected static GameStateManager gameStateManager;
     protected static Random random;
@@ -21,7 +19,6 @@ public class GameEnvironment : Game
     public GameEnvironment()
     {
         graphics = new GraphicsDeviceManager(this);
-        camera = new Camera();
         inputHelper = new InputHelper();
         gameStateManager = new GameStateManager();
         spriteScale = Matrix.CreateScale(1, 1, 1);
@@ -133,7 +130,7 @@ public class GameEnvironment : Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
-        spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.transform);
+        spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, spriteScale);
         gameStateManager.Draw(gameTime, spriteBatch);
         spriteBatch.End();
     }

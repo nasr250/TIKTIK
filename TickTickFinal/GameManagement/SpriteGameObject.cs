@@ -18,7 +18,7 @@ public class SpriteGameObject : GameObject
         {
             sprite = null;
         }
-    }    
+    }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
@@ -26,7 +26,16 @@ public class SpriteGameObject : GameObject
         {
             return;
         }
-        sprite.Draw(spriteBatch, this.GlobalPosition, origin);
+        try
+        {
+            Camera camera = GameWorld.Find("camera") as Camera;
+            sprite.Draw(spriteBatch, this.GlobalPosition + camera.Position, origin);
+        }
+        catch
+        {
+            sprite.Draw(spriteBatch, this.GlobalPosition, origin);
+        }
+
     }
 
     public SpriteSheet Sprite
