@@ -1,18 +1,11 @@
 ﻿using System;
-using Microsoft.Xna.Framework.Design;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-class RisingDrop : WaterDrop
+class RisingDrop : WobblyDrop
 {
-   
-    public override void MoveDrop()
-    {
-        counter++;
-        if (counter == randomcounter)
-        {
-            position.Y -= 20;
-            counter = 0;
-            randomcounter = random.Next(100,201);
-        }
-    }
+
 }
 

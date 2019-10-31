@@ -33,7 +33,6 @@ public class SpriteGameObject : GameObject
         else
         {
             sprite.Draw(spriteBatch, this.GlobalPosition + camera.Position, origin);
-            Console.WriteLine("fuck u");
         }
     }
 

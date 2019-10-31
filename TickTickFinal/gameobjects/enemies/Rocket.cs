@@ -4,6 +4,7 @@ class Rocket : AnimatedGameObject
 {
     protected double spawnTime;
     protected Vector2 startPosition;
+    protected bool deadRocket;
 
     public Rocket(bool moveToLeft, Vector2 startPosition)
     {
@@ -30,7 +31,10 @@ class Rocket : AnimatedGameObject
             spawnTime -= gameTime.ElapsedGameTime.TotalSeconds;
             return;
         }
-        visible = true;
+        if (!deadRocket)
+        {
+            visible = true;
+        }
         velocity.X = 600;
         if (Mirror)
         {
@@ -48,9 +52,19 @@ class Rocket : AnimatedGameObject
     public void CheckPlayerCollision()
     {
         Player player = GameWorld.Find("player") as Player;
-        if (CollidesWith(player) && visible)
+        if (CollidesWith(player) && visible && player.Velocity.Y <= velocity.Y)
         {
             player.Die(false);
         }
+        if (CollidesWith(player) && visible && player.Velocity.Y >= velocity.Y)
+        {
+            RocketDie();
+        }
+    }
+
+    public void RocketDie()
+    {
+        deadRocket = true;
+        visible = false;
     }
 }
