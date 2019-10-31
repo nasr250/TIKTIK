@@ -18,6 +18,7 @@ class Rocket : AnimatedGameObject
     public override void Reset()
     {
         visible = false;
+        deadRocket = false;
         position = startPosition;
         velocity = Vector2.Zero;
         spawnTime = GameEnvironment.Random.NextDouble() * 5;
@@ -30,11 +31,7 @@ class Rocket : AnimatedGameObject
         {
             spawnTime -= gameTime.ElapsedGameTime.TotalSeconds;
             return;
-        }
-        if (!deadRocket)
-        {
-            visible = true;
-        }
+        }       
         velocity.X = 600;
         if (Mirror)
         {
@@ -59,6 +56,10 @@ class Rocket : AnimatedGameObject
         if (CollidesWith(player) && visible && player.Velocity.Y >= velocity.Y)
         {
             RocketDie();
+        } 
+        if (!deadRocket)
+        {
+            visible = true;
         }
     }
 
