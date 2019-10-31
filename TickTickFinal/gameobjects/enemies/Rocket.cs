@@ -18,6 +18,7 @@ class Rocket : AnimatedGameObject
     public override void Reset()
     {
         visible = false;
+        deadRocket = false;
         position = startPosition;
         velocity = Vector2.Zero;
         spawnTime = GameEnvironment.Random.NextDouble() * 5;
@@ -66,5 +67,6 @@ class Rocket : AnimatedGameObject
     {
         deadRocket = true;
         visible = false;
+        Reset();
     }
 }

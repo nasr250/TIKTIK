@@ -80,7 +80,7 @@ public class GameEnvironment : Game
         }
 
         float targetAspectRatio = (float)screen.X / (float)screen.Y;
-        int width = graphics.PreferredBackBufferWidth;
+        int width =  graphics.PreferredBackBufferWidth;
         int height = (int)(width / targetAspectRatio);
         if (height > graphics.PreferredBackBufferHeight)
         {
@@ -125,6 +125,7 @@ public class GameEnvironment : Game
     {
         HandleInput();
         gameStateManager.Update(gameTime);
+        
     }
 
     protected override void Draw(GameTime gameTime)
