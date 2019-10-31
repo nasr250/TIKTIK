@@ -15,6 +15,7 @@ public class GameEnvironment : Game
     protected static Random random;
     protected static AssetManager assetManager;
     protected static GameSettingsManager gameSettingsManager;
+    protected Viewport viewport;
 
     public GameEnvironment()
     {
@@ -26,7 +27,6 @@ public class GameEnvironment : Game
         assetManager = new AssetManager(Content);
         gameSettingsManager = new GameSettingsManager();
     }
-
     public static Point Screen
     {
         get { return screen; }
