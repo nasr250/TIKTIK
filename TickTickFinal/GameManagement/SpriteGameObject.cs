@@ -32,7 +32,6 @@ public class SpriteGameObject : GameObject
         if (camera != null)
         {
             sprite.Draw(spriteBatch, this.GlobalPosition - camera.Position, origin);
-            Console.WriteLine("fuck u");
         }
         else
             sprite.Draw(spriteBatch, this.GlobalPosition, origin);

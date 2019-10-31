@@ -65,13 +65,11 @@
     <Compile Include="gameobjects\enemies\UnpredictableEnemy.cs" />
     <Compile Include="gameobjects\Player.cs" />
     <Compile Include="gameobjects\PlayerPhysics.cs" />
-    <Compile Include="gameobjects\RisingDrop.cs" />
     <Compile Include="gameobjects\Tile.cs" />
     <Compile Include="gameobjects\TileField.cs" />
     <Compile Include="gameobjects\TimerGameObject.cs" />
     <Compile Include="gameobjects\VisibilityTimer.cs" />
     <Compile Include="gameobjects\WaterDrop.cs" />
-    <Compile Include="gameobjects\WobblyDrop.cs" />
     <Compile Include="level\Level.cs" />
     <Compile Include="level\LevelGameLoop.cs" />
     <Compile Include="level\LevelLoading.cs" />
