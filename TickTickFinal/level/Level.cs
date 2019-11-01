@@ -37,8 +37,8 @@ partial class Level : GameObjectList
         quitButton.Position = new Vector2(GameEnvironment.Screen.X - quitButton.Width - 10, 10);
         Add(quitButton);
 
-        Add(new GameObjectList(1, "waterdrops"));
-        Add(new GameObjectList(2, "enemies"));
+        Add(new GameObjectList(3, "waterdrops"));
+        Add(new GameObjectList(4, "enemies"));
 
         LoadTiles("Content/Levels/" + levelIndex + ".txt");
     }
