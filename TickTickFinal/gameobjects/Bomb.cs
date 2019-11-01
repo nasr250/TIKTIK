@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 
 public class Bomb : AnimatedGameObject
 {
-    public Bomb()
+    protected Vector2 Bombposition;
+    public Bomb(Vector2 Bombposition)
     {
+        LoadAnimation("Sprites/Rocket/spr_rocket@3", "default", true, 0.2f);
+        PlayAnimation("default");
         Player player = GameWorld.Find("player") as Player;
-        position = player.Position;
-        velocity = Vector2.Zero;
+        this.Bombposition = player.GlobalPosition;        
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -21,12 +23,14 @@ public class Bomb : AnimatedGameObject
         if (inputHelper.KeyPressed(Keys.X))
         {           
             visible = true;
+            velocity.X = 600;
         }
     }
 
     public override void Reset()
     {
         visible = false;
+        velocity = Vector2.Zero;
     }
 }
 
