@@ -113,7 +113,6 @@ partial class Player : AnimatedGameObject
                 Die(true);
             }
         }
-
         DoPhysics();
     }
 

@@ -27,6 +27,15 @@ public class Bomb : AnimatedGameObject
         }
     }
 
+    public override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
+        if (visible)
+        {
+            velocity.X = 600;
+        }
+    }
+
     public override void Reset()
     {
         visible = false;
