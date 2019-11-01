@@ -5,24 +5,18 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class Camera : GameObject
 {
-    Viewport viewport;
     public Camera()
     {
         id = "camera";
     }
     public override void Update(GameTime gameTime)
     {
+        TileField tile = GameWorld.Find("tiles") as TileField;
         Player player = GameWorld.Find("player") as Player;
-        position = player.Position + new Vector2(-GameEnvironment.Screen.X / 2, -GameEnvironment.Screen.Y / 2);
-
-        if (position.X > viewport.Width)
-             position.X = viewport.Width;
-         if (position.X < viewport.Width)
-             position.X = viewport.Width;
-         if (position.Y < viewport.Height)
-            position.Y = viewport.Height;
-         if (position.Y > viewport.Height)
-            position.Y = viewport.Height;
+        if (player.Position.X > GameEnvironment.Screen.X / 2)
+            position.X = player.Position.X - GameEnvironment.Screen.X / 2;
+        if (player.Position.Y < GameEnvironment.Screen.Y / 2)
+            position.Y = player.Position.Y - GameEnvironment.Screen.Y / 2;
     }
 }
 
