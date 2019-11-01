@@ -60,7 +60,7 @@ class Rocket : AnimatedGameObject
         if (CollidesWith(player) && visible && player.Velocity.Y > velocity.Y)
         {
             RocketDie();
-        } 
+        }     
     }
 
     public void RocketDie()
