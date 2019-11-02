@@ -31,7 +31,7 @@ public class SpriteGameObject : GameObject
         Camera camera = GameWorld.Find("camera") as Camera;
         if (camera != null && layer != 100)
         {
-            if (layer == 1 || layer == 2)
+            if (layer == 1 || layer == 2 || layer == 3)
                 sprite.Draw(spriteBatch, this.GlobalPosition - camera.Position / (1 + layer), origin);
             else
                 sprite.Draw(spriteBatch, this.GlobalPosition - camera.Position, origin);

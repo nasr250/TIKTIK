@@ -20,6 +20,8 @@ public class Camera : GameObject
             position.X = tile.Columns * tile.CellWidth - GameEnvironment.Screen.X;
         if (position.Y > tile.Rows * tile.CellHeight - GameEnvironment.Screen.Y)
             position.Y = tile.Rows * tile.CellHeight - GameEnvironment.Screen.Y;
+      //  if(position.Y < tile.Rows * tile.CellHeight - GameEnvironment.Screen.Y)
+      //      position.Y = tile.Rows * tile.CellHeight - GameEnvironment.Screen.Y;
     }
 }
 
