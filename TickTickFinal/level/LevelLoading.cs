@@ -34,13 +34,13 @@ partial class Level : GameObjectList
         timerBackground.Position = new Vector2(10, 10);
         Add(timerBackground);
 
-        int timerlineoffset = 0;
+        int timeroffset = 0;
         if (int.TryParse(textLines[textLines.Count - 2], out int timevalue))
         {
             TimerGameObject timer = new TimerGameObject(101, "timer", timevalue);
             timer.Position = new Vector2(25, 30);
             Add(timer);
-            timerlineoffset = 1;
+            timeroffset = 1;
         }
         else
         {
@@ -49,13 +49,13 @@ partial class Level : GameObjectList
             Add(timer);
         }
 
-        TileField tiles = new TileField(textLines.Count - (1 + timerlineoffset), width, 1, "tiles");
+        TileField tiles = new TileField(textLines.Count - (1 + timeroffset), width, 1, "tiles");
         Add(tiles);
         tiles.CellWidth = 72;
         tiles.CellHeight = 55;
         for (int x = 0; x < width; ++x)
         {
-            for (int y = 0; y < textLines.Count - (1 + timerlineoffset); ++y)
+            for (int y = 0; y < textLines.Count - (1 + timeroffset); ++y)
             {
                 Tile t = LoadTile(textLines[y][x], x, y);
                 tiles.Add(t, x, y); 
