@@ -12,7 +12,7 @@ partial class Player : AnimatedGameObject
     protected bool finished;
     protected bool walkingOnIce, walkingOnHot;
 
-    public Player(Vector2 start) : base(2, "player")
+    public Player(Vector2 start) : base(5, "player")
     {
         LoadAnimation("Sprites/Player/spr_idle", "idle", true); 
         LoadAnimation("Sprites/Player/spr_run@13", "run", true, 0.05f);

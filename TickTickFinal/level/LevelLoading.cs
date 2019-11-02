@@ -15,15 +15,15 @@ partial class Level : GameObjectList
             textLines.Add(line);
             line = fileReader.ReadLine();
         }
-        TileField tiles = new TileField(textLines.Count - 1, width, 1, "tiles");
+        TileField tiles = new TileField(textLines.Count - 1, width, 5, "tiles");
 
         GameObjectList hintField = new GameObjectList(100);
         Add(hintField);
         string hint = textLines[textLines.Count - 1];
-        SpriteGameObject hintFrame = new SpriteGameObject("Overlays/spr_frame_hint", 1);
+        SpriteGameObject hintFrame = new SpriteGameObject("Overlays/spr_frame_hint", 100);
         hintField.Position = new Vector2((GameEnvironment.Screen.X - hintFrame.Width) / 2, 10);
         hintField.Add(hintFrame);
-        TextGameObject hintText = new TextGameObject("Fonts/HintFont", 2);
+        TextGameObject hintText = new TextGameObject("Fonts/HintFont", 100);
         hintText.Text = textLines[textLines.Count - 1];
         hintText.Position = new Vector2(120, 25);
         hintText.Color = Color.Black;
@@ -153,7 +153,7 @@ partial class Level : GameObjectList
     private Tile LoadEndTile(int x, int y)
     {
         TileField tiles = Find("tiles") as TileField;
-        SpriteGameObject exitObj = new SpriteGameObject("Sprites/spr_goal", 3, "exit");
+        SpriteGameObject exitObj = new SpriteGameObject("Sprites/spr_goal", 6, "exit");
         exitObj.Position = new Vector2(x * tiles.CellWidth, (y + 1) * tiles.CellHeight);
         exitObj.Origin = new Vector2(0, exitObj.Height);
         Add(exitObj);

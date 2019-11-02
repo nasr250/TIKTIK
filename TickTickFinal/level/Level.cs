@@ -8,21 +8,21 @@ partial class Level : GameObjectList
     public Level(int levelIndex)
     {
         // load the backgrounds
-        GameObjectList backgrounds = new GameObjectList(0, "backgrounds");
-        SpriteGameObject backgroundSky = new SpriteGameObject("Backgrounds/spr_sky");
+        GameObjectList backgrounds = new GameObjectList(1, "backgrounds");
+        SpriteGameObject backgroundSky = new SpriteGameObject("Backgrounds/spr_sky", 1);
         backgroundSky.Position = new Vector2(0, GameEnvironment.Screen.Y - backgroundSky.Height);
         backgrounds.Add(backgroundSky);
 
         // add a few random mountains
         for (int i = 0; i < 5; i++)
         {
-            SpriteGameObject mountain = new SpriteGameObject("Backgrounds/spr_mountain_" + (GameEnvironment.Random.Next(2) + 1), 1);
+            SpriteGameObject mountain = new SpriteGameObject("Backgrounds/spr_mountain_" + (GameEnvironment.Random.Next(2) + 1), 2);
             mountain.Position = new Vector2((float)GameEnvironment.Random.NextDouble() * GameEnvironment.Screen.X - mountain.Width / 2, 
                 GameEnvironment.Screen.Y - mountain.Height);
             backgrounds.Add(mountain);
         }
 
-        Clouds clouds = new Clouds(2);
+        Clouds clouds = new Clouds(3);
         backgrounds.Add(clouds);
         Add(backgrounds);
 
@@ -37,8 +37,8 @@ partial class Level : GameObjectList
         quitButton.Position = new Vector2(GameEnvironment.Screen.X - quitButton.Width - 10, 10);
         Add(quitButton);
 
-        Add(new GameObjectList(3, "waterdrops"));
-        Add(new GameObjectList(4, "enemies"));
+        Add(new GameObjectList(4, "waterdrops"));
+        Add(new GameObjectList(5, "enemies"));
 
         LoadTiles("Content/Levels/" + levelIndex + ".txt");
     }
