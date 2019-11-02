@@ -31,10 +31,21 @@ public class SpriteGameObject : GameObject
         Camera camera = GameWorld.Find("camera") as Camera;
         if (camera != null && layer != 100)
         {
-            if (layer == 1 || layer == 2 || layer == 3)
-                sprite.Draw(spriteBatch, this.GlobalPosition - camera.Position * (1 + layer), origin);
-            else
-                sprite.Draw(spriteBatch, this.GlobalPosition - camera.Position * layer, origin);
+            switch (layer)
+            {
+                case (1):
+                    sprite.Draw(spriteBatch, this.GlobalPosition - camera.Position / 5, origin);
+                    break;
+                case (2):
+                    sprite.Draw(spriteBatch, this.GlobalPosition - camera.Position / 4, origin);
+                    break;
+                case (3):
+                    sprite.Draw(spriteBatch, this.GlobalPosition - camera.Position / 3, origin);
+                    break;
+                default:
+                    sprite.Draw(spriteBatch, this.GlobalPosition - camera.Position, origin);
+                    break;
+            }
         }
         else
             sprite.Draw(spriteBatch, this.GlobalPosition, origin);
