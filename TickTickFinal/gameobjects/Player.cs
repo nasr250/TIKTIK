@@ -11,6 +11,7 @@ partial class Player : AnimatedGameObject
     protected bool exploded;
     protected bool finished;
     protected bool walkingOnIce, walkingOnHot;
+    bool shooting;
 
     public Player(Vector2 start) : base(5, "player")
     {
@@ -70,6 +71,13 @@ partial class Player : AnimatedGameObject
         {
             Jump();
         }
+        if (!shooting)
+        {
+            if (inputHelper.KeyPressed(Keys.X))
+            {
+                shooting = true;
+            }
+        }
     }
 
     public override void Update(GameTime gameTime)
@@ -113,7 +121,7 @@ partial class Player : AnimatedGameObject
                 Die(true);
             }
         }
-
+        Shoot(gameTime);
         DoPhysics();
     }
 
@@ -166,5 +174,18 @@ partial class Player : AnimatedGameObject
         velocity.X = 0.0f;
         PlayAnimation("celebrate");
         GameEnvironment.AssetManager.PlaySound("Sounds/snd_player_won");
+    }
+
+    public void Shoot(GameTime gameTime)
+    {
+        if (shooting)
+        {
+            Bomb.Bombvelocity.X = 600;
+            Bomb.Bombposition += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        }
+        else
+        {
+
+        }
     }
 }
