@@ -57,7 +57,7 @@ class Rocket : AnimatedGameObject
         {
             visible = true;
         }
-        if (CollidesWith(player) && visible && player.Velocity.Y > velocity.Y)
+        if (CollidesWith(player) && visible && player.Velocity.Y > velocity.Y) //Wanneer er een collision is met de player en wanneer de player hoger is dan de rocket dan gaat de rocket dood.
         {
             RocketDie();
         }     
