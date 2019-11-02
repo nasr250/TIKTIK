@@ -16,7 +16,7 @@ partial class Level : GameObjectList
         // add a few random mountains
         for (int i = 0; i < 5; i++)
         {
-            SpriteGameObject mountain = new SpriteGameObject("Backgrounds/spr_mountain_" + (GameEnvironment.Random.Next(2) + 1), 2);
+            SpriteGameObject mountain = new SpriteGameObject("Backgrounds/spr_mountain_" + (GameEnvironment.Random.Next(2) + 1), GameEnvironment.Random.Next(1, 3));
             mountain.Position = new Vector2((float)GameEnvironment.Random.NextDouble() * GameEnvironment.Screen.X - mountain.Width / 2, 
                 GameEnvironment.Screen.Y - mountain.Height);
             backgrounds.Add(mountain);
@@ -24,14 +24,7 @@ partial class Level : GameObjectList
 
         Clouds clouds = new Clouds(3);
         backgrounds.Add(clouds);
-        Add(backgrounds);
-
-        SpriteGameObject timerBackground = new SpriteGameObject("Sprites/spr_timer", 100);
-        timerBackground.Position = new Vector2(10, 10);
-        Add(timerBackground);
-        TimerGameObject timer = new TimerGameObject(101, "timer");
-        timer.Position = new Vector2(25, 30);
-        Add(timer);
+        Add(backgrounds);      
 
         quitButton = new Button("Sprites/spr_button_quit", 100);
         quitButton.Position = new Vector2(GameEnvironment.Screen.X - quitButton.Width - 10, 10);

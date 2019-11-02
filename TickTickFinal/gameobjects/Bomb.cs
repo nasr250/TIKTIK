@@ -1,26 +1,32 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-public class Bomb : AnimatedGameObject
+public class Bomb : GameObject
 {
+    Texture2D ball;
     Vector2 Bombposition, Bombvelocity;
     bool shooting;
+    
 
-    public Bomb(Vector2 Bombposition)
+    public Bomb(ContentManager Content)
     {
-        LoadAnimation("Sprites/Rocket/spr_rocket@3", "default", true, 0.2f);
-        PlayAnimation("default");
+        ball = Content.Load<Texture2D>("Ball");
         Player player = GameWorld.Find("player") as Player;
         Bombposition = player.GlobalPosition;
         Bombvelocity = Vector2.Zero;
         shooting = false;
+    }
+
+    public override void HandleInput(InputHelper inputHelper)
+    {
+        if (inputHelper.KeyPressed(Keys.X) && !shooting)
+        {
+            shooting = true;
+            velocity.X = 600;
+        }
     }
 
     public override void Update(GameTime gameTime)
@@ -28,7 +34,7 @@ public class Bomb : AnimatedGameObject
         base.Update(gameTime);
         Player player = GameWorld.Find("player") as Player;
         if (shooting)
-        {           
+        {
             Bombvelocity.X = 600;
             Bombposition += Bombvelocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
@@ -41,8 +47,7 @@ public class Bomb : AnimatedGameObject
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.Draw(null ,Bombposition, Color.White);
+        spriteBatch.Draw(ball, Bombposition, Color.White);
     }
-
 }
 

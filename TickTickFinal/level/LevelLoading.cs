@@ -8,19 +8,18 @@ partial class Level : GameObjectList
     {
         List<string> textLines = new List<string>();
         StreamReader fileReader = new StreamReader(path);
-        string line = fileReader.ReadLine();
+        string line = fileReader.ReadLine();  
         int width = line.Length;
         while (line != null)
         {
             textLines.Add(line);
             line = fileReader.ReadLine();
         }
-        TileField tiles = new TileField(textLines.Count - 1, width, 5, "tiles");
-
+              
         GameObjectList hintField = new GameObjectList(100);
         Add(hintField);
-        string hint = textLines[textLines.Count - 1];
-        SpriteGameObject hintFrame = new SpriteGameObject("Overlays/spr_frame_hint", 100);
+        string hint = textLines[textLines.Count - 1];      
+        SpriteGameObject hintFrame = new SpriteGameObject("Overlays/spr_frame_hint", 100);         
         hintField.Position = new Vector2((GameEnvironment.Screen.X - hintFrame.Width) / 2, 10);
         hintField.Add(hintFrame);
         TextGameObject hintText = new TextGameObject("Fonts/HintFont", 100);
@@ -30,15 +29,36 @@ partial class Level : GameObjectList
         hintField.Add(hintText);
         VisibilityTimer hintTimer = new VisibilityTimer(hintField, 1, "hintTimer");
         Add(hintTimer);
+
+        SpriteGameObject timerBackground = new SpriteGameObject("Sprites/spr_timer", 100);
+        timerBackground.Position = new Vector2(10, 10);
+        Add(timerBackground);
+
+        int timerlineoffset = 0;
+        if (int.TryParse(textLines[textLines.Count - 2], out int timevalue))
+        {
+            TimerGameObject timer = new TimerGameObject(101, "timer", timevalue);
+            timer.Position = new Vector2(25, 30);
+            Add(timer);
+            timerlineoffset = 1;
+        }
+        else
+        {
+            TimerGameObject timer = new TimerGameObject(101, "timer");
+            timer.Position = new Vector2(25, 30);
+            Add(timer);
+        }
+
+        TileField tiles = new TileField(textLines.Count - (1 + timerlineoffset), width, 1, "tiles");
         Add(tiles);
         tiles.CellWidth = 72;
         tiles.CellHeight = 55;
         for (int x = 0; x < width; ++x)
         {
-            for (int y = 0; y < textLines.Count - 1; ++y)
+            for (int y = 0; y < textLines.Count - (1 + timerlineoffset); ++y)
             {
                 Tile t = LoadTile(textLines[y][x], x, y);
-                tiles.Add(t, x, y);
+                tiles.Add(t, x, y); 
             }
         }
     }
@@ -98,6 +118,7 @@ partial class Level : GameObjectList
         Vector2 startPosition = new Vector2(((float)x + 0.5f) * tiles.CellWidth, (y + 1) * tiles.CellHeight);
         Player player = new Player(startPosition);
         Add(player);
+        
         Add(new Camera());
         return new Tile("", TileType.Background);
     }
