@@ -32,9 +32,9 @@ public class SpriteGameObject : GameObject
         if (camera != null && layer != 100)
         {
             if (layer == 1 || layer == 2 || layer == 3)
-                sprite.Draw(spriteBatch, this.GlobalPosition - camera.Position * (1 + layer), origin);
+                sprite.Draw(spriteBatch, this.GlobalPosition - camera.Position / (1 + layer), origin);
             else
-                sprite.Draw(spriteBatch, this.GlobalPosition - camera.Position * layer, origin);
+                sprite.Draw(spriteBatch, this.GlobalPosition - camera.Position, origin);
         }
         else
             sprite.Draw(spriteBatch, this.GlobalPosition, origin);
