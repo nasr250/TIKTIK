@@ -13,5 +13,5 @@ W..W............W.W.
 ....................
 .1.........A........
 #######..***********
-10
+20
 Do not touch the flames, and watch how they move.

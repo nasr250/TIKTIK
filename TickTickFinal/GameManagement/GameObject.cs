@@ -8,6 +8,7 @@ public abstract class GameObject : IGameLoopObject
     protected int layer;
     protected string id;
     protected bool visible;
+    public bool isAlive = true;
 
     public GameObject(int layer = 0, string id = "")
     {
@@ -34,6 +35,7 @@ public abstract class GameObject : IGameLoopObject
     public virtual void Reset()
     {
         visible = true;
+        isAlive = true;
     }
 
     public virtual Vector2 Position

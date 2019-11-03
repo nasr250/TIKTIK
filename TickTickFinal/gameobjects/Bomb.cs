@@ -1,53 +1,31 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Input;
 
-public class Bomb : GameObject
-{
-    Texture2D ball;
-    Vector2 Bombposition, Bombvelocity;
-    bool shooting;
-    
-
-    public Bomb(ContentManager Content)
+class Bomb : AnimatedGameObject
+{    
+    public Bomb(bool moveToLeft, Vector2 BombPosition) : base(2, "Bomb")
     {
-        ball = Content.Load<Texture2D>("Ball");
-        Player player = GameWorld.Find("player") as Player;
-        Bombposition = player.GlobalPosition;
-        Bombvelocity = Vector2.Zero;
-        shooting = false;
-    }
-
-    public override void HandleInput(InputHelper inputHelper)
-    {
-        if (inputHelper.KeyPressed(Keys.X) && !shooting)
-        {
-            shooting = true;
-            velocity.X = 600;
-        }
+        LoadAnimation("Sprites/Bomb/spr_Bomb@3", "default", true, 0.2f);
+        PlayAnimation("default");       
+        this.Position = BombPosition;
+        if (moveToLeft) Mirror = moveToLeft;          
     }
 
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        Player player = GameWorld.Find("player") as Player;
-        if (shooting)
+        visible = true;
+        velocity.X = 600;
+        if (Mirror)
         {
-            Bombvelocity.X = 600;
-            Bombposition += Bombvelocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            velocity.X *= -1;
         }
-        else
-        {
-            Bombposition = player.GlobalPosition;
-        }
-    }
 
-    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-    {
-        base.Draw(gameTime, spriteBatch);
-        spriteBatch.Draw(ball, Bombposition, Color.White);
-    }
+        Rectangle screenBox = new Rectangle(0, 0, GameEnvironment.Screen.X, GameEnvironment.Screen.Y);
+        if (!screenBox.Intersects(this.BoundingBox))
+        {
+            Player.shooting = false;
+            visible = false;
+        }
+    }  
 }
 

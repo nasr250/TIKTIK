@@ -7,10 +7,10 @@ partial class Player : AnimatedGameObject
     protected Vector2 startPosition;
     protected bool isOnTheGround;
     protected float previousYPosition;
-    protected bool isAlive;
     protected bool exploded;
     protected bool finished;
     protected bool walkingOnIce, walkingOnHot;
+    public static bool shooting = false;
 
     public Player(Vector2 start) : base(5, "player")
     {
@@ -37,6 +37,7 @@ partial class Player : AnimatedGameObject
         walkingOnHot = false;
         PlayAnimation("idle");
         previousYPosition = BoundingBox.Bottom;
+        shooting = false;
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -69,6 +70,10 @@ partial class Player : AnimatedGameObject
         if ((inputHelper.KeyPressed(Keys.Space) || inputHelper.KeyPressed(Keys.Up)) && isOnTheGround)
         {
             Jump();
+        }
+        if (inputHelper.KeyPressed(Keys.X) && !shooting)
+        {
+            Shoot();
         }
     }
 
@@ -159,6 +164,15 @@ partial class Player : AnimatedGameObject
         get { return finished; }
     }
 
+    public void Shoot()
+    {
+        if (!shooting)
+        {
+            Bomb bomb = new Bomb(Mirror, position);
+            GameWorld.Add(bomb);
+            shooting = true;
+        }
+    }
     public void LevelFinished()
     {
         finished = true;

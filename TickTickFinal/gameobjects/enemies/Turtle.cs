@@ -61,4 +61,18 @@ class Turtle : AnimatedGameObject
             player.Jump(1500);
         }
     }
+
+    public void CheckBombCollision()
+    {
+        Bomb bomb = GameWorld.Find("bomb") as Bomb;
+        if (CollidesWith(bomb))
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        isAlive = false;
+    }
 }

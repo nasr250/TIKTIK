@@ -23,7 +23,7 @@ public class SpriteGameObject : GameObject
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        if (!visible || sprite == null)
+        if (!visible || sprite == null || !isAlive)
         {
             return;
         }
@@ -100,8 +100,12 @@ public class SpriteGameObject : GameObject
     }
 
     public bool CollidesWith(SpriteGameObject obj)
-    {
-        if (!visible || !obj.visible || !BoundingBox.Intersects(obj.BoundingBox))
+    { 
+        if(obj == null)
+        {
+            return false;
+        }
+        if (!visible || !obj.visible || !BoundingBox.Intersects(obj.BoundingBox) || !isAlive)
         {
             return false;
         }
@@ -126,5 +130,11 @@ public class SpriteGameObject : GameObject
         }
         return false;
     }
+
+    public void Die()
+    {
+        isAlive = false;
+    }
+
 }
 

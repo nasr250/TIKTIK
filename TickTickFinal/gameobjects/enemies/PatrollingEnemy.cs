@@ -42,6 +42,7 @@ class PatrollingEnemy : AnimatedGameObject
             }
         }
         CheckPlayerCollision();
+        CheckBombCollision();
     }
 
     public void CheckPlayerCollision()
@@ -51,6 +52,20 @@ class PatrollingEnemy : AnimatedGameObject
         {
             player.Die(false);
         }
+    }
+
+    public void CheckBombCollision()
+    {
+        Bomb bomb = GameWorld.Find("bomb") as Bomb;
+        if (CollidesWith(bomb))
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        isAlive = false;
     }
 
     public void TurnAround()

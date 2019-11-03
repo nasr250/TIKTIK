@@ -264,7 +264,7 @@
 /processorParam:Quality=Best
 /build:Sounds/snd_watercollected.wma
 
-#begin Sprites/Ball.png
+#begin Sprites/Bomb/spr_Bomb@3.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -274,7 +274,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Ball.png
+/build:Sprites/Bomb/spr_Bomb@3.png
 
 #begin Sprites/Flame/spr_flame@9.png
 /importer:TextureImporter

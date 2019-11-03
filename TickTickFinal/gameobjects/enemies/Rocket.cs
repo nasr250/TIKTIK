@@ -18,7 +18,8 @@ class Rocket : AnimatedGameObject
     public override void Reset()
     {
         deadRocket = false;
-        visible = false;       
+        visible = false;    
+        isAlive = true;
         position = startPosition;
         velocity = Vector2.Zero;
         spawnTime = GameEnvironment.Random.NextDouble() * 5;
@@ -38,6 +39,7 @@ class Rocket : AnimatedGameObject
             this.velocity.X *= -1;
         }
         CheckPlayerCollision();
+        
         // check if we are outside the screen
         Rectangle screenBox = new Rectangle(0, 0, GameEnvironment.Screen.X, GameEnvironment.Screen.Y);
         if (!screenBox.Intersects(this.BoundingBox))
@@ -49,7 +51,7 @@ class Rocket : AnimatedGameObject
     public void CheckPlayerCollision()
     {
         Player player = GameWorld.Find("player") as Player;
-        if (CollidesWith(player) && visible && player.Velocity.Y <= velocity.Y)
+        if (CollidesWith(player) && visible && player.Velocity.Y <= velocity.Y && isAlive)
         {
             player.Die(false);
         }       
@@ -57,16 +59,25 @@ class Rocket : AnimatedGameObject
         {
             visible = true;
         }
-        if (CollidesWith(player) && visible && player.Velocity.Y > velocity.Y) //Wanneer er een collision is met de player en wanneer de player hoger is dan de rocket dan gaat de rocket dood.
+        if (CollidesWith(player) && visible && player.Velocity.Y > velocity.Y && isAlive) //Wanneer er een collision is met de player en wanneer de player hoger is dan de rocket dan gaat de rocket dood.
         {
             RocketDie();
-        }     
+        }   
+    }
+
+    public void CheckBombCollision()
+    {
+        Bomb bomb = GameWorld.Find("bomb") as Bomb;
+        if (CollidesWith(bomb) && visible)
+        {
+            RocketDie();
+        }
     }
 
     public void RocketDie()
     {
         deadRocket = true;
-        visible = false;
+        isAlive = false;
         Reset();
     }
 }
