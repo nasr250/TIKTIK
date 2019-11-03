@@ -73,10 +73,10 @@ class Sparky : AnimatedGameObject
     {
         Bomb bomb = GameWorld.Find("bomb") as Bomb;
         if (CollidesWith(bomb))
-            Die();
+            SparkyDie();
     }
 
-    public void Die()
+    public void SparkyDie()
     {
         isAlive = false;
     }

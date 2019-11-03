@@ -2,7 +2,7 @@
 
 class Bomb : AnimatedGameObject
 {    
-    public Bomb(bool moveToLeft, Vector2 BombPosition) : base(2, "Bomb")
+    public Bomb(bool moveToLeft, Vector2 BombPosition) : base(5, "Bomb")
     {
         LoadAnimation("Sprites/Bomb/spr_Bomb@3", "default", true, 0.2f);
         PlayAnimation("default");       
@@ -26,6 +26,6 @@ class Bomb : AnimatedGameObject
             Player.shooting = false;
             visible = false;
         }
-    }  
+    } 
 }
 

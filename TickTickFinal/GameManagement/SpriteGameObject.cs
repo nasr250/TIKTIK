@@ -130,11 +130,5 @@ public class SpriteGameObject : GameObject
         }
         return false;
     }
-
-    public void Die()
-    {
-        isAlive = false;
-    }
-
 }
 

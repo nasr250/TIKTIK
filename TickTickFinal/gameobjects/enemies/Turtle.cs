@@ -67,11 +67,11 @@ class Turtle : AnimatedGameObject
         Bomb bomb = GameWorld.Find("bomb") as Bomb;
         if (CollidesWith(bomb))
         {
-            Die();
+            TurtleDie();
         }
     }
 
-    public void Die()
+    public void TurtleDie()
     {
         isAlive = false;
     }

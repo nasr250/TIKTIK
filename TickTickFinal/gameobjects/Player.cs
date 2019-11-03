@@ -169,8 +169,8 @@ partial class Player : AnimatedGameObject
         if (!shooting)
         {
             Bomb bomb = new Bomb(Mirror, position);
-            GameWorld.Add(bomb);
             shooting = true;
+            GameWorld.Add(bomb);
         }
     }
     public void LevelFinished()

@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Graphics;
 public class GameObjectList : GameObject
 {
     protected List<GameObject> children;
-    bool isAlive;
 
     public GameObjectList(int layer = 0, string id = "") : base(layer, id)
     {
